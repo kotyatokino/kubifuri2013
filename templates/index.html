@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Nodes{% endblock %}
+
+{% block js%}
+
+    <script type="text/javascript" >
+function DoCommand(){
+    var parameters = "";
+    if($F('slname')){
+	parameters = "pname=" + $F('pname');
+    }
+
+    new Ajax.Request("/ajDoCommand", {
+			 method: 'post',
+			 parameters: parameters,
+			 asynchronous: true,
+			 onSuccess: function(ret) {
+			     var out = "";
+			     if(ret.responseText == -1){
+				out = "<font size=20 color=\"red\">Error</font>\n";
+			     }else{
+				 
+				 var j = JSON.parse(ret.responseText);
+				 }
+			     }
+			     $('out').innerHTML = out;
+			     
+			 }
+		     });
+}
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+  <H1>Select project</h1>
+<select name="pname" id="pname">
+  {% for proj in projs %}
+    <option value="{{ proj['name'] }}">{{ proj['jname'] }}</option>
+  {% endfor %}
+</select>
+<button type="button" onClick="DoCommand();">切り替え実行</button>
+
+
+<div id="out"></div>
+<div id="out1"></div>
+
+
+{% endblock %}
+

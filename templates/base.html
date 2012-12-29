@@ -1,0 +1,24 @@
+<html>
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+
+  <script type="text/javascript" src="/static/scriptaculous-js-1.9.0/lib/prototype.js"> </script>
+  <script type="text/javascript" src="/static/scriptaculous-js-1.9.0/src/scriptaculous.js"></script>
+    {% block js %}
+    {% endblock %}
+</head>
+<body {% block bodyparam %}{% endblock %} >
+
+  
+  
+  <div id="content">{% block content %}{% endblock %}</div>
+  <div id="footer">
+    {% block footer %}
+      <hr>
+        &copy; Copyright 2012 by JGN-X and GINEW dev team</a>.
+      {% endblock %}
+</div>
+</body>
+</html>
