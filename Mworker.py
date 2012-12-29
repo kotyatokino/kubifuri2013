@@ -10,7 +10,7 @@ class CRancidWorker:
         strHostname = dicConfig['hostname']
         strConfig = self.GenConfig(dicConfig['config'],strPname)
 
-        strConfig = "jlogin %s -c 'configure ; edit logical-systems %s ; %s commit' " % (strHostname,Mconfig.strLRname,strConfig)
+        strConfig = "jlogin -c 'configure ; edit logical-systems %s ; %s commit' %s" % (Mconfig.strLRname,strConfig,strHostname)
 
         print strConfig
         #subprocess.call(strConfig, shell=True)
