@@ -9,55 +9,60 @@
 #### set bridge-domains v1000-Snow13kubifuri domain-type bridge
 # commit
 
-strLRname = "kubifuri"
+strLRname = 'kubifuri'
 
+lstProjs = [
+    {'name':'NEC_OF','jname':'NEC OpenFlow'},
+    {'name':'Juniper_OF','jname':'Juniper OpenFlow'},
+    {'name':'NTTLABxx','jname':'NTTLABxx'},
+    {'name':'proj1','jname':'proj1debug'},
+]
 lstConfig = [
-    {"hostname":"sapporo-mx80-1",
-     "config":[
+    {'hostname':'sapporo-mx80-1',
+     'config':[
             {'pname':'proj1',
              'config':[
-                    {'ivid':1000,'ouf':'xe-0/0/2.1001','ovid':1001},
-                    {'ivid':1002,'ouf':'xe-0/0/2.1003','ovid':1003}
+                    {'ivid':1000,'oif':'xe-0/0/2.1001','ovid':1001},
+                    {'ivid':1002,'oif':'xe-0/0/2.1003','ovid':1003}
                     ]
              },
             {'pname':'proj2',
              'config':[
-                    {'ivid':1000,'ouf':'xe-0/0/2.1001','ovid':1001},
-                    {'ivid':1002,'ouf':'xe-0/0/2.1003','ovid':1003}
+                    {'ivid':1000,'oif':'xe-0/0/2.1001','ovid':1001},
+                    {'ivid':1002,'oif':'xe-0/0/2.1003','ovid':1003}
                     ]
              }
             ]
      },
-    {"hostname":"nagomm-mx80-1",
-     "config":[
+
+    {'hostname':'nagomm-mx80-1',
+     'config':[
             {'pname':'proj1',
              'config':[
-                    {'ivid':1000,'ouf':'xe-0/0/2.1001','ovid':1001},
-                    {'ivid':1002,'ouf':'xe-0/0/2.1003','ovid':1003}
+                    {'ivid':1000,'oif':'xe-0/0/2.1001','ovid':1001},
+                    {'ivid':1002,'oif':'xe-0/0/2.1003','ovid':1003}
                     ]
              },
             {'pname':'proj2',
              'config':[
-                 [
-                    {'ivid':1000,'ouf':'xe-0/0/2.1001','ovid':1001},
-                    {'ivid':1002,'ouf':'xe-0/0/2.1003','ovid':1003}
+                    {'ivid':1000,'oif':'xe-0/0/2.1001','ovid':1001},
+                    {'ivid':1002,'oif':'xe-0/0/2.1003','ovid':1003}
                     ]
              }
             ]
      },
-    {"hostname":"ndojima-mx80-1",
-     "config":[
+    {'hostname':'ndojima-mx80-1',
+     'config':[
             {'pname':'proj1',
              'config':[
-                 [
-                    {'ivid':1000,'ouf':'xe-0/0/2.1001','ovid':1001},
-                    {'ivid':1002,'ouf':'xe-0/0/2.1003','ovid':1003}
+                    {'ivid':1000,'oif':'xe-0/0/2.1001','ovid':1001},
+                    {'ivid':1002,'oif':'xe-0/0/2.1003','ovid':1003}
                     ]
              },
             {'pname':'proj2',
              'config':[
-                    {'ivid':1000,'ouf':'xe-0/0/2.1001','ovid':1001},
-                    {'ivid':1002,'ouf':'xe-0/0/2.1003','ovid':1003}
+                    {'ivid':1000,'oif':'xe-0/0/2.1001','ovid':1001},
+                    {'ivid':1002,'oif':'xe-0/0/2.1003','ovid':1003}
                     ]
              }
             ]

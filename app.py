@@ -13,25 +13,31 @@ app = Flask(__name__)
 
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    return render_template("index.html",projs=Mconfig.lstProjs)
 
+thread_list=[]
+node_list=[]
 @app.route("/ajDoCommand",methods=['POST'])
 def ajDoCommand():
     if(request.method == 'POST'):
         strPname = request.form['pname']
-        CRancid = Mworker.CRancidWorker()
-
-        for dicNode in Mconfig.lstConcig:
-            thread = Thread(target=CRancid.DoRancid, args=(dicNode))
+        Cworker = Mworker.CRancidWorker()
+        for dicNode in Mconfig.lstConfig:
+            thread = Thread(target=Cworker.DoWorker, args=(dicNode,strPname))
             thread_list.append(thread)
+#            node_list.append({'name':dicNode['hostname'],'result':''})
             thread.daemon = True
             thread.start()
         for thread in thread_list:
             thread.join()
 
-    return "0"
+    return 1
+
+@app.route("/ajcheckThread",methods=['POST'])
+def ajcheckThread():
+    return "aaa"
 
 
 app.secret_key = 'kubifuri99999'
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0",port=8081, debug=True)

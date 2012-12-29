@@ -7,7 +7,7 @@
     <script type="text/javascript" >
 function DoCommand(){
     var parameters = "";
-    if($F('slname')){
+    if($F('pname')){
 	parameters = "pname=" + $F('pname');
     }
 
@@ -20,14 +20,31 @@ function DoCommand(){
 			     if(ret.responseText == -1){
 				out = "<font size=20 color=\"red\">Error</font>\n";
 			     }else{
-				 
-				 var j = JSON.parse(ret.responseText);
-				 }
+				out = "Command accepted. All Configs are started.\n";
 			     }
 			     $('out').innerHTML = out;
+                             checkThread();
+			 }
+		     });
+}
+
+function checkThread(){
+    new Ajax.Request("/ajcheckThread", {
+			 method: 'post',
+			 asynchronous: true,
+			 onSuccess: function(ret) {
+			     var out1 = "";
+			     if(ret.responseText == -1){
+				out1 = "<font size=20 color=\"red\">Error</font>\n";
+			     }else{
+				out1 = ret.responseText;
+			     }
+			     $('out1').innerHTML = out1;
 			     
 			 }
 		     });
+    
+      
 }
 
 </script>
@@ -41,7 +58,7 @@ function DoCommand(){
     <option value="{{ proj['name'] }}">{{ proj['jname'] }}</option>
   {% endfor %}
 </select>
-<button type="button" onClick="DoCommand();">切り替え実行</button>
+<button onClick="DoCommand()">切り替え実行</button>
 
 
 <div id="out"></div>
