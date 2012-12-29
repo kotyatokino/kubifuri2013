@@ -25,13 +25,13 @@ def ajDoCommand():
         for dicNode in Mconfig.lstConfig:
             thread = Thread(target=Cworker.DoWorker, args=(dicNode,strPname))
             thread_list.append(thread)
-#            node_list.append({'name':dicNode['hostname'],'result':''})
+            node_list.append({'name':dicNode['hostname'],'result':''})
             thread.daemon = True
             thread.start()
         for thread in thread_list:
             thread.join()
 
-    return 1
+    return "1"
 
 @app.route("/ajcheckThread",methods=['POST'])
 def ajcheckThread():
