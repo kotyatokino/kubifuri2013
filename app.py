@@ -35,7 +35,22 @@ def ajDoCommand():
 
 @app.route("/ajcheckThread",methods=['POST'])
 def ajcheckThread():
-    return "aaa"
+    intI = 0
+    strRet = ""
+    intWorking = 0
+    for thread in thread_list:
+        if(thread.is_alive()):
+            strRes = "<font color=\"red\">Working</font>"
+            intWorking=1
+        else:
+            strRes = "<font color=\"green\">Finished</font>"
+        strTmp = "%s:%s<br>" % (node_list[intI]['name'],strRes)
+        strRet = strRet + strTmp
+        intI = intI + 1
+    if(intWorking):
+        return strRet
+    else:
+        return "2"
 
 
 app.secret_key = 'kubifuri99999'

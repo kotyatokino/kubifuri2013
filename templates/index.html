@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Nodes{% endblock %}
+{% block title %}Select{% endblock %}
 
 {% block js%}
 
@@ -20,7 +20,7 @@ function DoCommand(){
 			     if(ret.responseText == -1){
 				out = "<font size=20 color=\"red\">Error</font>\n";
 			     }else{
-				out = "Command accepted. All Configs are started.\n";
+				out = "<font size=5>Command accepted. All Configs are started.</font>\n";
 			     }
 			     $('out').innerHTML = out;
                              checkThread();
@@ -35,12 +35,16 @@ function checkThread(){
 			 onSuccess: function(ret) {
 			     var out1 = "";
 			     if(ret.responseText == -1){
-				out1 = "<font size=20 color=\"red\">Error</font>\n";
+				 out1 = "<font size=20 color=\"red\">Error</font>\n";
+			     }else if(ret.responseText == 2){
+				 out1 = "<font color=\"green\">All config finished</font>"
 			     }else{
-				out1 = ret.responseText;
+				 out1 = ret.responseText;
+				 setTimeout( function() {
+						 checkThread();
+					     },1000);
 			     }
 			     $('out1').innerHTML = out1;
-			     
 			 }
 		     });
     
@@ -60,7 +64,7 @@ function checkThread(){
 </select>
 <button onClick="DoCommand()">切り替え実行</button>
 
-
+<hr>
 <div id="out"></div>
 <div id="out1"></div>
 
